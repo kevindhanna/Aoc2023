@@ -52,7 +52,7 @@ func findValue(line string, withWords bool) (int, error) {
 	charSlice := strings.Split(line, "")
 	startAcc := []string{}
 	endAcc := []string{}
-	for i, char := range charSlice {
+	for _, char := range charSlice {
 		if val, err := strconv.Atoi(char); err == nil {
 			first = val
 			break
@@ -103,33 +103,6 @@ func findTotalForLines(input string, withWords bool) int {
 	}
 
 	return helpers.Sum(values)
-}
-
-func unit(input string, withWords bool, result int) error {
-	var val, err = findValue(input, withWords)
-	if err != nil {
-		fmt.Println(err)
-		fmt.Printf("for `%v` withWords %v, expected %v got %v\n", input, withWords, result, val)
-		return err
-	}
-	return nil
-}
-
-func Test() error {
-	unit("6l", false, 66)
-	unit("fone6", true, 16)
-	unit("two1nine", true, 29)
-
-	part1Result := findTotalForLines("day1/test-input.txt", false)
-	if part1Result != 142 {
-		return errors.New(fmt.Sprintf("Bad result for 1:1, 142 != %v", part1Result))
-	}
-
-	part2Result := findTotalForLines("day1/test-input-p2.txt", true)
-	if part2Result != 281 {
-		return errors.New(fmt.Sprintf("Bad result for 1:2, 281 != %v", part2Result))
-	}
-	return nil
 }
 
 func Part1() string {

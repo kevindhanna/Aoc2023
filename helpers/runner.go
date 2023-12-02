@@ -6,7 +6,7 @@ import (
 )
 
 func printResult(name string, result string, duration time.Duration) {
-	fmt.Printf("part %v: %v :: completed in %v\n", name, result, duration)
+	fmt.Printf("part %v: %v\n   completed in %v\n\n", name, result, duration)
 }
 
 func RunPart(part func() string, name string) {
