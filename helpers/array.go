@@ -5,29 +5,29 @@ import (
 	"strings"
 )
 
-func Map[T any, U any](items []T, apply func(item T) U) []U {
+func Map[T any, U any](items []T, apply func(item T, i int) U) []U {
 	results := []U{}
-	for _, item := range items {
-		results = append(results, apply(item))
+	for i, item := range items {
+		results = append(results, apply(item, i))
 	}
 	return results
 }
 
-func Reduce[T any, U any](items []T, apply func(result U, item T) U, initial U) U {
+func Reduce[T any, U any](items []T, apply func(result U, item T, i int) U, initial U) U {
 	result := initial
-	for _, item := range items {
-		result = apply(result, item)
+	for i, item := range items {
+		result = apply(result, item, i)
 	}
 
 	return result
 }
 
-func SplitMap[T any](input string, split string, apply func(s string) (T, error)) ([]T, error) {
+func SplitMap[T any](input string, split string, apply func(s string, i int) (T, error)) ([]T, error) {
 	slice := strings.Split(input, split)
 	results := []T{}
 
-	for _, part := range slice {
-		result, err := apply(part)
+	for i, part := range slice {
+		result, err := apply(part, i)
 		if err != nil {
 			return results, err
 		}

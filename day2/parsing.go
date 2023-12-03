@@ -20,7 +20,7 @@ type Game struct {
 	Rounds []Round
 }
 
-func ParseCube(resultString string) (Cube, error) {
+func ParseCube(resultString string, _ int) (Cube, error) {
 	resultTuple := strings.Split(resultString, " ")
 	if len(resultTuple) != 2 {
 		return Cube{}, errors.New(fmt.Sprintf("Failed to parse game result: %v", resultString))
@@ -34,7 +34,7 @@ func ParseCube(resultString string) (Cube, error) {
 	return Cube{Colour: resultTuple[1], Count: count}, nil
 }
 
-func ParseRound(roundPart string) (Round, error) {
+func ParseRound(roundPart string, _ int) (Round, error) {
 	return helpers.SplitMap(roundPart, ", ", ParseCube)
 }
 

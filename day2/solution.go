@@ -41,7 +41,7 @@ func SumPossibleGameIds(input string) int {
 	possibleGames := helpers.Filter(games, func(game Game) bool {
 		return IsPossible(game, part1Set)
 	})
-	return helpers.Reduce(possibleGames, func(total int, game Game) int {
+	return helpers.Reduce(possibleGames, func(total int, game Game, _ int) int {
 		return total + game.Id
 	}, 0)
 }
@@ -52,7 +52,7 @@ func Part1() string {
 }
 
 func CalculatePower(game Game) int {
-	maxCubes := helpers.Reduce(game.Rounds, func(result []Cube, round Round) []Cube {
+	maxCubes := helpers.Reduce(game.Rounds, func(result []Cube, round Round, _ int) []Cube {
 		for _, cube := range round {
 			i, err := helpers.FindIndex(result, func(max Cube) bool {
 				return max.Colour == cube.Colour
@@ -69,10 +69,10 @@ func CalculatePower(game Game) int {
 		return result
 	}, []Cube{})
 
-	counts := helpers.Map(maxCubes, func(cube Cube) int {
+	counts := helpers.Map(maxCubes, func(cube Cube, _ int) int {
 		return cube.Count
 	})
-	return helpers.Reduce(counts, func(result int, count int) int {
+	return helpers.Reduce(counts, func(result int, count int, _ int) int {
 		return result * count
 	}, 1)
 }
@@ -81,7 +81,7 @@ func SumGamePowers(input string) int {
 	gameStrings := helpers.ReadInputToLines(input)
 	games := parseGames(gameStrings)
 
-	return helpers.Sum(helpers.Map(games, func(game Game) int {
+	return helpers.Sum(helpers.Map(games, func(game Game, _ int) int {
 		return CalculatePower(game)
 	}))
 }

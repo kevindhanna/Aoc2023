@@ -3,6 +3,7 @@ package main
 import (
 	"aoc2023/day1"
 	"aoc2023/day2"
+	"aoc2023/day3"
 	"aoc2023/helpers"
 	"fmt"
 	"os"
@@ -11,7 +12,7 @@ import (
 
 type Day func() string
 
-var implementedDays = [][]Day{{day1.Part1, day1.Part2}, {day2.Part1, day2.Part2}}
+var implementedDays = [][]Day{{day1.Part1, day1.Part2}, {day2.Part1, day2.Part2}, {day3.Part1, day3.Part2}}
 
 func main() {
 	days := os.Args[1:]
@@ -20,10 +21,12 @@ func main() {
 		for _, dayString := range days {
 			day, err := strconv.Atoi(dayString)
 			if err != nil {
-				fmt.Errorf("%v is not a day, man", dayString)
+				fmt.Println(fmt.Errorf("%v is not a day, man", dayString))
+				return
 			}
-			if day > len(days) {
-				fmt.Errorf("Day %v not implemented yet, dude", day)
+			if day > len(implementedDays) {
+				fmt.Println(fmt.Errorf("Day %v not implemented yet, dude", day))
+				return
 			}
 			dayFns := implementedDays[day-1]
 			for i, fn := range dayFns {
