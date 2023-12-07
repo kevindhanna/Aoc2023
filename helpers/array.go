@@ -56,6 +56,12 @@ func Filter[T any](items []T, predicate func(item T) bool) []T {
 	return results
 }
 
+func FindIndexComparable[T comparable](items []T, needle T) (int, error) {
+	return FindIndex(items, func(item T) bool {
+		return needle == item
+	})
+}
+
 func FindIndex[T any](items []T, predicate func(item T) bool) (int, error) {
 	for i, item := range items {
 		if predicate(item) {
