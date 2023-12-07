@@ -5,6 +5,15 @@ import (
 	"strings"
 )
 
+func Reverse[T any](items []T) []T {
+	itemsCopy := make([]T, len(items))
+	copy(itemsCopy, items)
+	for i, j := 0, len(itemsCopy)-1; i < j; i, j = i+1, j-1 {
+		itemsCopy[i], itemsCopy[j] = itemsCopy[j], itemsCopy[i]
+	}
+	return itemsCopy
+}
+
 func Map[T any, U any](items []T, apply func(item T, i int) U) []U {
 	results := []U{}
 	for i, item := range items {

@@ -5,6 +5,8 @@ import (
 	"aoc2023/day2"
 	"aoc2023/day3"
 	"aoc2023/day4"
+	"aoc2023/day5"
+	"aoc2023/day6"
 	"aoc2023/helpers"
 	"fmt"
 	"os"
@@ -13,7 +15,13 @@ import (
 
 type Day func() string
 
-var implementedDays = [][]Day{{day1.Part1, day1.Part2}, {day2.Part1, day2.Part2}, {day3.Part1, day3.Part2}, {day4.Part1, day4.Part2}}
+var implementedDays = [][]Day{{day1.Part1, day1.Part2},
+	{day2.Part1, day2.Part2},
+	{day3.Part1, day3.Part2},
+	{day4.Part1, day4.Part2},
+	{day5.Part1, day5.Part2},
+	{day6.Part1, day6.Part2},
+}
 
 func main() {
 	days := os.Args[1:]
