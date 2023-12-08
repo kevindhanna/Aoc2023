@@ -70,3 +70,12 @@ func FindIndex[T any](items []T, predicate func(item T) bool) (int, error) {
 	}
 	return -1, errors.New("Coulnd't find matching item")
 }
+
+func Every[T any](items []T, predicate func(item T) bool) bool {
+	for _, item := range items {
+		if !predicate(item) {
+			return false
+		}
+	}
+	return true
+}
