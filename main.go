@@ -9,6 +9,7 @@ import (
 	"aoc2023/day6"
 	"aoc2023/day7"
 	"aoc2023/day8"
+	"aoc2023/day9"
 	"aoc2023/helpers"
 	"flag"
 	"fmt"
@@ -27,6 +28,7 @@ var implementedDays = [][]Day{
 	{day6.Part1, day6.Part2},
 	{day7.Part1, day7.Part2},
 	{day8.Part1, day8.Part2},
+	{day9.Part1, day9.Part2},
 }
 
 func solutionContent(day string) string {
